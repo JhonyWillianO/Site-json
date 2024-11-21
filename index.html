@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site com JSON</title>
+</head>
+<body>
+  <h1>Lista de Usuários</h1>
+  <ul id="lista-usuarios"></ul>
+  
+  <script>
+    // Substitua 'dados.json' pela URL hospedada depois
+    fetch('dados.json')
+      .then(response => response.json())
+      .then(data => {
+        const lista = document.getElementById('lista-usuarios');
+        data.usuarios.forEach(usuario => {
+          const item = document.createElement('li');
+          item.textContent = `${usuario.nome} - ${usuario.email}`;
+          lista.appendChild(item);
+        });
+      })
+      .catch(error => console.error('Erro ao carregar JSON:', error));
+  </script>
+</body>
+</html>
